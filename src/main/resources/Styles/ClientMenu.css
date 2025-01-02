@@ -1,0 +1,97 @@
+.main_menu_container {
+  -fx-background-color: #eeeeee;
+  -fx-alignment: center;
+}
+
+.left_container {
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 10;
+  -fx-effect: dropshadow(two-pass-box, #aaaaaa, 5, 0, 0, 4);
+}
+
+/* Title/Logo Section */
+.title_container {
+  -fx-background-color: #ffffff;
+  -fx-background-radius: 20 20 0 0;
+  -fx-alignment: top_center;
+  -fx-padding: 10;
+}
+
+.title_container FontAwesomeIconView {
+  -fx-fill: #132a13;
+}
+
+.title_container Text {
+  -fx-fill: #000000;
+  -fx-font-size: 2em;
+}
+
+/* Navigation Section */
+.menu_container {
+  -fx-padding: 10 10 10 20;
+  -fx-spacing: 20;
+}
+
+.menu_container Button {
+  -fx-pref-width: 115;
+  -fx-pref-height: 40;
+  -fx-background-color: #ffffff;
+  -fx-text-fill: #132a13;
+  -fx-font-size: 1.1em;
+  -fx-alignment: center_left;
+  -fx-effect: dropshadow(three-pass-box, #dddddd, 5, 0, 0, 6);
+}
+
+.menu_container Button:hover {
+  -fx-cursor: hand;
+}
+
+.menu_container Button FontAwesomeIconView {
+  -fx-fill: #132a13;
+}
+
+.alt_menu_btn {
+  -fx-pref-width: 115;
+  -fx-pref-height: 40;
+  -fx-background-color: #132a13;
+  -fx-text-fill: #ffffff;
+  -fx-font-size: 1.1em;
+  -fx-alignment: center_left;
+}
+
+.alt_menu_btn FontAwesomeIconView {
+  -fx-fill: #ffffff;
+}
+
+/* Report Bug/Suggestion */
+.report_container {
+  -fx-background-color: #eeffee;
+  -fx-background-radius: 10;
+  -fx-alignment: center;
+  -fx-spacing: 10;
+  -fx-padding: 10 0 10 0;
+}
+
+.report container Text {
+  -fx-font-weight: bold;
+  -fx-fill: #132a13;
+}
+
+.report_container Label {
+  -fx-text-alignment: center;
+  -fx-wrap-text: true;
+}
+
+.report_container Button {
+  -fx-pref-width: 80;
+  -fx-background-color: #132a13;
+  -fx-text-fill: #ffffff;
+}
+
+.report_container Button:hover {
+  -fx-cursor: hand;
+}
+
+.report_container Button FontAwesomeIconView {
+  -fx-fill: #ffffff;
+}
