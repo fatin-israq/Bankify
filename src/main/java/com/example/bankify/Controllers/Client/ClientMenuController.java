@@ -1,5 +1,6 @@
 package com.example.bankify.Controllers.Client;
 
+import com.example.bankify.Models.Model;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 
@@ -16,6 +17,24 @@ public class ClientMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
+        addListeners();
     }
+
+    private void addListeners() {
+        dashboard_btn.setOnAction(event -> onDashboard());
+        transaction_btn.setOnAction(event -> onTransactions());
+        accounts_btn.setOnAction(event -> onAccounts());
+    }
+    private void onDashboard() {
+        Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("Dashboard");
+    }
+
+    private void onTransactions() {
+        Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("Transactions");
+    }
+
+    private void onAccounts() {
+        Model.getInstance().getViewFactory().getClientSelectedMenuItem().set("Accounts");
+    }
+
 }
