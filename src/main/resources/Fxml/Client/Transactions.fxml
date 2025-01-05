@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Text?>
+
+<AnchorPane prefHeight="750.0" prefWidth="850.0" styleClass="transactions-container" stylesheets="@../../Styles/Transactions.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bankify.Controllers.Client.TransactionsController">
+   <Text layoutX="395.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Transations" wrappingWidth="144.1396484375" AnchorPane.leftAnchor="349.0" AnchorPane.topAnchor="14.0" />
+   <ListView fx:id="transactions_listview" layoutX="19.0" layoutY="100.0" prefHeight="640.0" prefWidth="830.0" AnchorPane.leftAnchor="19.0" AnchorPane.topAnchor="100.0" />
+</AnchorPane>
