@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
+
+<AnchorPane prefHeight="60.0" prefWidth="550.0" styleClass="cell_container" stylesheets="@../../Styles/TransactionCell.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <VBox layoutY="5.0" prefHeight="50.0" prefWidth="50.0" styleClass="trans_icon_container" AnchorPane.bottomAnchor="4.600000000000004" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="5.0">
+      <FontAwesomeIconView fx:id="in_icon" glyphName="LONG_ARROW_RIGHT" size="17" />
+      <FontAwesomeIconView fx:id="out_icon" glyphName="LONG_ARROW_LEFT" size="17" />
+   </VBox>
+   <Label fx:id="trans_date_lbl" layoutX="73.0" layoutY="22.0" styleClass="trans_date_lbl" text="2025-13-1" AnchorPane.leftAnchor="100.0" AnchorPane.topAnchor="22.0" />
+   <Label fx:id="sender_lbl" layoutX="190.0" layoutY="22.0" styleClass="trans_pAddress_lbl" text="Abir" AnchorPane.leftAnchor="200.0" AnchorPane.topAnchor="22.0" />
+   <Line endY="20.0" layoutX="307.0" layoutY="18.0" startY="2.79" AnchorPane.bottomAnchor="21.790000915527344" AnchorPane.leftAnchor="300.0" AnchorPane.topAnchor="20.0" />
+   <Label fx:id="receiver_lbl" layoutX="356.0" layoutY="21.0" styleClass="trans_pAddress_lbl" text="Minar" AnchorPane.leftAnchor="358.0" AnchorPane.topAnchor="22.0" />
+   <Label fx:id="amount_lbl" layoutX="488.0" layoutY="17.0" styleClass="trans_amount_lbl" text="2000" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="17.0">
+      <graphic>
+         <FontAwesomeIconView glyphName="DOLLAR" wrappingWidth="6.057155132293701" />
+      </graphic>
+   </Label>
+</AnchorPane>
