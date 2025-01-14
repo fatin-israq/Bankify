@@ -18,7 +18,7 @@
    <Label fx:id="login_date" layoutX="6.0" layoutY="5.0" styleClass="date_lbl" text="Today, 2025-01-03 " AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="27.0" />
    <Text layoutX="811.0" layoutY="96.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section_title" text="Accounts Summary" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="90.0" />
    <Text layoutX="557.0" layoutY="157.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="section_title" text="My Accounts" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="90.0" />
-   <HBox layoutX="20.0" layoutY="131.0" prefHeight="180.0" prefWidth="620.0" styleClass="accounts_view" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="120.0">
+   <HBox layoutX="20.0" layoutY="120.0" prefHeight="180.0" prefWidth="620.0" styleClass="accounts_view" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="120.0">
       <AnchorPane prefHeight="150.0" prefWidth="295.0">
          <styleClass>
             <String fx:value="account" />
