@@ -12,5 +12,7 @@ public class CheckingAccount extends Account {
         this.transactionLimit = new SimpleIntegerProperty(this, "Transaction Limit", tlimit);
     }
 
-    public IntegerProperty transactionLimitProp() {return transactionLimit;}
+    public IntegerProperty transactionLimitProp() {
+        return transactionLimit;
+    }
 }
