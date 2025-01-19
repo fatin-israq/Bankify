@@ -4,6 +4,7 @@
 package com.example.bankify.Models;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -49,6 +50,30 @@ public class DatabaseDriver {
            e.printStackTrace();
         }
         return resultSet;
+    }
+
+    public void createClient(String fName, String lName, String pAddress, String password, LocalDate date){
+        Statement statement;
+        try{
+            statement = this.conn.createStatement();
+            statement.executeUpdate("INSERT INTO " +
+                    "Clients (FirstName, LastName, PayeeAddress, Password, Date)" +
+                    "VALUES ('"+fName+"', '"+lName+"', '"+pAddress+"', '"+password+"', '"+date.toString()+"');");
+        }catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
+    public void createCheckingAccount(String owner, String number, double tLimit, double balance ){
+        Statement statement;
+        try{
+            statement = this.conn.createStatement();
+            statement.executeUpdate("INSERT INTO " +
+                    "CheckingAccounts(Owner, AccountNumber, TransactionLimit, Balance)" +
+                    " VALUES ('"+owner+"', '"+number+"', "+tLimit+", "+balance+")");
+        }catch(SQLException e){
+            e.printStackTrace();
+        }
     }
 
     /*
