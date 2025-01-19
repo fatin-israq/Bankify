@@ -38,6 +38,8 @@ public class ClientMenuController implements Initializable {
         Model.getInstance().getViewFactory().getClientSelectedMenuItem().set(ClientMenuOptions.ACCOUNTS);
     }
 
+
+    // Bottom methods are garbage methods. Only for Git Learning purpose...
     // Trying out github - Ena
     private void onProfile() {}
 }
