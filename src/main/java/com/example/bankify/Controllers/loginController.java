@@ -23,7 +23,7 @@ public class loginController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         acc_selector.setItems(FXCollections.observableArrayList(AccountType.CLIENT, AccountType.ADMIN));
         acc_selector.setValue(Model.getInstance().getViewFactory().getLoginAccountType());
-        acc_selector.valueProperty().addListener(observable->Model.getInstance().getViewFactory().setLoginAccountType(acc_selector.getValue()));
+        acc_selector.valueProperty().addListener(observable->setAcc_selector());
         login_btn.setOnAction(event -> onLogin());
     }
 
@@ -39,11 +39,31 @@ public class loginController implements Initializable {
             } else {
                 payee_address_fld.setText("");
                 password_fld.setText("");
-                error_lbl.setText("Invalid Credentials!");
+                error_lbl.setText("No Such Login Credentials");
             }
         }
         else {
-            Model.getInstance().getViewFactory().showAdminWindow();
+           // Evaluate Admin Loging Credentials
+            Model.getInstance().evaluateAdminCred(payee_address_fld.getText(), password_fld.getText());
+            if(Model.getInstance().getAdminLoginSuccessFlag()){
+                Model.getInstance().getViewFactory().showAdminWindow();
+                // Close the login stage
+                Model.getInstance().getViewFactory().closeStage(stage);
+            } else {
+                payee_address_fld.setText("");
+                password_fld.setText("");
+                error_lbl.setText("No Such Login Credentials");
+            }
+        }
+    }
+
+    private void setAcc_selector(){
+        Model.getInstance().getViewFactory().setLoginAccountType(acc_selector.getValue());
+        //Change Payee Address label accordingly
+        if(acc_selector.getValue()==AccountType.ADMIN) {
+            payee_address_lbl.setText("Username:");
+        }else{
+            payee_address_lbl.setText("Payee Address:");
         }
     }
 }
