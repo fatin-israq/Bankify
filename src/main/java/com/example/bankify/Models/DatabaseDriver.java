@@ -35,6 +35,17 @@ public class DatabaseDriver {
         return resultSet;
     }
 
+    public ResultSet getTransactions(String pAddress, int limit){
+        Statement statement;
+        ResultSet resultSet = null;
+        try {
+            statement = this.conn.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM Transactions WHERE Sender = '" + pAddress + "' OR Receiver='" + pAddress + "' LIMIT " + limit + ";");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
 
     /*
     Admin Section
