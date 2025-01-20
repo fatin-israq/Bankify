@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
@@ -20,4 +21,6 @@
          <FontAwesomeIconView glyphName="DOLLAR" wrappingWidth="6.057155132293701" />
       </graphic>
    </Label>
+   <Button fx:id="message_btn" layoutX="442.0" layoutY="18.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="28.0" styleClass="message_btn" AnchorPane.rightAnchor="80.0" AnchorPane.topAnchor="18.0" />
+   <FontAwesomeIconView glyphName="BELL" layoutX="449.0" layoutY="35.0" size="14" />
 </AnchorPane>
