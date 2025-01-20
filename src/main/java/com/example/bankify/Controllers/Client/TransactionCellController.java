@@ -1,9 +1,12 @@
 package com.example.bankify.Controllers.Client;
 
+import com.example.bankify.Models.Model;
 import com.example.bankify.Models.Transaction;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.paint.Color;
 
 import java.net.URL;
 import java.util.ResourceBundle;
@@ -14,6 +17,7 @@ public class TransactionCellController implements Initializable {
     public Label trans_date_lbl;
     public Label sender_lbl;
     public Label receiver_lbl;
+    public Button message_btn;
     public Label amount_lbl;
 
     private final Transaction transaction;
@@ -28,5 +32,18 @@ public class TransactionCellController implements Initializable {
         receiver_lbl.textProperty().bind(transaction.receiverProperty());
         amount_lbl.textProperty().bind(transaction.amountProperty().asString());
         trans_date_lbl.textProperty().bind(transaction.dateProperty().asString());
+        message_btn.setOnAction(event -> Model.getInstance().getViewFactory().showMessageWindow(transaction.senderProperty().get(), transaction.messageProperty().get()));
+        transactionIcons();
+    }
+
+    //Arow colour change according to transaction type
+    private void transactionIcons(){
+        if(transaction.senderProperty().get().equals(Model.getInstance().getClient().pAddressProperty().get())){
+           in_icon.setFill(Color.rgb(240,240,240));
+           out_icon.setFill(Color.RED);
+        }else{
+            in_icon.setFill(Color.GREEN);
+            out_icon.setFill(Color.rgb(240,240,240));
+        }
     }
 }
