@@ -5,6 +5,9 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 public class TransactionCellController implements Initializable {
     public FontAwesomeIconView in_icon;
     public FontAwesomeIconView out_icon;
@@ -20,5 +23,5 @@ public class TransactionCellController implements Initializable {
     }
 
     @Override
-    public void initialize(java.net.URL url, java.util.ResourceBundle resourceBundle) {}
+    public void initialize(URL url, ResourceBundle resourceBundle) {}
 }
