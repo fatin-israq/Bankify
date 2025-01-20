@@ -101,6 +101,29 @@ public class DatabaseDriver {
         }
     }
 
+    // For searching a client
+    public ResultSet searchClient(String pAddress) {
+        Statement statement;
+        ResultSet resultSet = null;
+        try {
+            statement = this.conn.createStatement();
+            resultSet = statement.executeQuery("SELECT * FROM Clients WHERE PayeeAddress='" + pAddress + "';");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+        return resultSet;
+    }
+
+    public void depositSavings(String pAddress, double amount) {
+        Statement statement;
+        try {
+            statement = this.conn.createStatement();
+            statement.executeUpdate("UPDATE SavingsAccounts SET Balance = " + amount + " WHERE Owner = '" + pAddress + "';");
+        } catch (SQLException e){
+            e.printStackTrace();
+        }
+    }
+
     /*
     Utility Methods
      */
