@@ -6,6 +6,8 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
 import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.time.LocalDate;
 
 public class Model {
@@ -130,35 +132,61 @@ public class Model {
         }
     }
 
+    public ObservableList<Client> searchClient(String pAddress) {
+        ObservableList<Client> searchResults = FXCollections.observableArrayList();
+        ResultSet resultSet = databaseDriver.searchClient(pAddress);
+        try {
+            CheckingAccount checkingAccount = getCheckingAccount(pAddress);
+            SavingsAccount savingsAccount = getSavingsAccount(pAddress);
+            String fName = resultSet.getString("FirstName");
+            String lName = resultSet.getString("LastName");
+            String[] dateParts = resultSet.getString("Date").split("-");
+            LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));
+            searchResults.add(new Client(fName, lName, pAddress, checkingAccount, savingsAccount, date));
+        } catch (Exception e){
+            e.printStackTrace();
+        }
+        return searchResults;
+    }
+
     /*
     * Utility Methods Section
     * */
     public CheckingAccount getCheckingAccount(String pAddress) {
-        CheckingAccount account = null;
-        ResultSet resultSet = databaseDriver.getCheckingAccountData(pAddress);
-        try {
+    CheckingAccount account = null;
+    try (ResultSet resultSet = databaseDriver.getCheckingAccountData(pAddress)) {
+        if (resultSet.next()) {
             String num = resultSet.getString("AccountNumber");
             int tLimit = (int) resultSet.getDouble("TransactionLimit");
             double balance = resultSet.getDouble("Balance");
             account = new CheckingAccount(pAddress, num, balance, tLimit);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            System.err.println("No checking account found for address: " + pAddress);
         }
-        return account;
+    } catch (SQLException e) {
+        System.err.println("Error retrieving checking account for address: " + pAddress);
+        e.printStackTrace(); // Replace with proper logging
     }
+    return account;
+}
 
-    public SavingsAccount getSavingsAccount(String pAddress) {
-        SavingsAccount account = null;
-        ResultSet resultSet = databaseDriver.getSavingsAccountData(pAddress);
-        try {
+public SavingsAccount getSavingsAccount(String pAddress) {
+    SavingsAccount account = null;
+    try (ResultSet resultSet = databaseDriver.getSavingsAccountData(pAddress)) {
+        if (resultSet.next()) {
             String num = resultSet.getString("AccountNumber");
             double wLimit = resultSet.getDouble("WithdrawalLimit");
             double balance = resultSet.getDouble("Balance");
             account = new SavingsAccount(pAddress, num, balance, wLimit);
-        } catch (Exception e) {
-            e.printStackTrace();
+        } else {
+            System.err.println("No savings account found for address: " + pAddress);
         }
-        return account;
+    } catch (SQLException e) {
+        System.err.println("Error retrieving savings account for address: " + pAddress);
+        e.printStackTrace(); // Replace with proper logging
     }
+    return account;
+}
+
 
 }
