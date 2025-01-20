@@ -5,10 +5,16 @@ import com.example.bankify.Controllers.Client.ClientController;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.StackPane;
+import javafx.scene.control.Label;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+
 
 public class ViewFactory {
     private AccountType loginAccountType;
@@ -136,6 +142,24 @@ public class ViewFactory {
     public void showLoginWindow() {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/Fxml/Login.fxml"));
         createStage(loader);
+    }
+
+    public void showMessageWindow(String pAddress, String messageText){
+        StackPane pane = new StackPane();
+        HBox hBox = new HBox(5);
+        hBox.setAlignment(Pos.CENTER);
+        Label sender = new Label(pAddress);
+        Label message = new Label(messageText);
+        hBox.getChildren().addAll(sender, message);
+        pane.getChildren().add(hBox);
+        Scene scene = new Scene(pane,300, 100);
+        Stage stage = new Stage();
+        stage.getIcons().add(new Image(String.valueOf(getClass().getResource("/Images/icon.png"))));
+        stage.setResizable(false);
+        stage.initModality(Modality.APPLICATION_MODAL);
+        stage.setTitle("Message");
+        stage.setScene(scene);
+        stage.show();
     }
 
     public void createStage(FXMLLoader loader) {
