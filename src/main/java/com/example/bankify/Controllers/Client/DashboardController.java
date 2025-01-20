@@ -1,6 +1,7 @@
 package com.example.bankify.Controllers.Client;
 
 import com.example.bankify.Models.Model;
+import com.example.bankify.Models.Transaction;
 import com.example.bankify.Views.TransactionCellFactory;
 import javafx.beans.binding.Bindings;
 import javafx.fxml.Initializable;
@@ -8,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
 import java.net.URL;
+import java.sql.ResultSet;
 import java.time.LocalDate;
 import java.util.ResourceBundle;
 
@@ -32,6 +34,8 @@ public class DashboardController implements Initializable {
         initLatestTransactionsList();
         transaction_listview.setItems(Model.getInstance().getLatestTransactions());
         transaction_listview.setCellFactory(e -> new TransactionCellFactory());
+        send_money_btn.setOnAction(actionEvent -> onSendMoney());
+        accountSummary();
     }
 
     private void bindData(){
@@ -48,5 +52,48 @@ public class DashboardController implements Initializable {
             // If empty, create a list
             Model.getInstance().setLatestTransactions();
         }
+    }
+
+    private void onSendMoney(){
+        String receiver = payee_fld.getText();
+        double amount = Double.parseDouble(amount_fld.getText());
+        String message = message_fld.getText();
+        String sender = Model.getInstance().getClient().pAddressProperty().get();
+        ResultSet resultSet = Model.getInstance().getDatabaseDriver().searchClient(receiver);
+        try{
+            if(resultSet.isBeforeFirst()){
+                Model.getInstance().getDatabaseDriver().updateBalance(receiver, amount, "ADD");
+            }
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+        //Subtract from sender's savings account
+        Model.getInstance().getDatabaseDriver().updateBalance(sender, amount, "SUB");
+        //Update the savings account balance in the client object
+        Model.getInstance().getClient().savingsAccountProperty().get().setBalance(Model.getInstance().getDatabaseDriver().getSavingsAccountBalance(sender));
+        //Record new Transaction
+        Model.getInstance().getDatabaseDriver().newTransaction(sender, receiver, amount, message);
+        //Clear the fields
+        payee_fld.setText("");
+        amount_fld.setText("");
+        message_fld.setText("");
+    }
+
+    //Methode calculates all expenses and income
+    public void accountSummary(){
+        double income = 0;
+        double expenses = 0;
+        if(Model.getInstance().getAllTransactions().isEmpty()){
+            Model.getInstance().setAllTransactions();
+        }
+        for(Transaction transaction : Model.getInstance().getAllTransactions()){
+            if(transaction.senderProperty().get().equals(Model.getInstance().getClient().pAddressProperty().get())){
+                expenses = expenses + transaction.amountProperty().get();
+            }else{
+                income = income + transaction.amountProperty().get();
+            }
+        }
+        income_lbl.setText("+ ৳" + income);
+        expense_lbl.setText("- ৳" + expenses);
     }
 }
