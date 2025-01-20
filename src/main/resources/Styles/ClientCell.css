@@ -1,6 +1,6 @@
 
 .client_cell_container {
-    -fx-text-fill: #FFFFFF;
+    -fx-background-color: #FFFFFF;
     -fx-background-radius: 10;
     -fx-effect: dropshadow(three-pass-box, #DDDDDD, 5, 0, 0, 7);
 }
@@ -22,7 +22,7 @@
 
 .acc_display_lbl {
     -fx-font-family: Calibri;
-    -fx_font_weight: bold;
+    -fx_font_weight: bolder;
     -fx-font-size: 1.1em;
 }
 
