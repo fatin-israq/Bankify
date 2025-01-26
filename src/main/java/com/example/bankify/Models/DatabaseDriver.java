@@ -73,7 +73,11 @@ public class DatabaseDriver {
             if(operation.equals("ADD")){
                 newBalance = resultSet.getDouble("Balance") + amount;
                 statement.executeUpdate("UPDATE SavingsAccounts SET Balance = "+newBalance+" WHERE Owner = '"+pAddress+"';");
-            }else{
+            } else if (operation.equals("CHECKING")) {
+                statement.executeUpdate("UPDATE CheckingAccounts SET Balance = " + amount + " WHERE Owner = '" + pAddress + "';");
+            } else if (operation.equals("SAVINGS")) {
+                statement.executeUpdate("UPDATE SavingsAccounts SET Balance = " + amount + " WHERE Owner = '" + pAddress + "';");
+            } else{
                 if(resultSet.getDouble("Balance") >= amount){
                     newBalance = resultSet.getDouble("Balance") - amount;
                     statement.executeUpdate("UPDATE SavingsAccounts SET Balance = "+newBalance+" WHERE Owner = '"+pAddress+"';");

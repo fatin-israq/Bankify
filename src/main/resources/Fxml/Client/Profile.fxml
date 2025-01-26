@@ -22,12 +22,12 @@
          <Label fx:id="profile_username" styleClass="profile-username" text="bBaker1" />
          <!-- Personal Details -->
          <VBox spacing="10" styleClass="details-container">
-            <Label styleClass="detail-label" text="First Name: Banjamin" />
-            <Label styleClass="detail-label" text="Last Name: Baker" />
-            <Label styleClass="detail-label" text="Email: bBaker1@gmail.com" />
-            <Label styleClass="detail-label" text="Phone: +123456789" />
-            <Label styleClass="detail-label" text="NID Number: 56745523457" />
-            <Label styleClass="detail-label" text="Address: Bangla Street, London, England" />
+            <Label fx:id="first_name" styleClass="detail-label" text="First Name: Banjamin" />
+            <Label fx:id="last_name" styleClass="detail-label" text="Last Name: Baker" />
+            <Label fx:id="email" styleClass="detail-label" text="Email: bBaker1@gmail.com" />
+            <Label fx:id="phone" styleClass="detail-label" text="Phone: +123456789" />
+            <Label fx:id="nid_number" styleClass="detail-label" text="NID Number: 56745523457" />
+            <Label fx:id="address" styleClass="detail-label" text="Address: Bangla Street, London, England" />
          </VBox>
       </VBox>
 

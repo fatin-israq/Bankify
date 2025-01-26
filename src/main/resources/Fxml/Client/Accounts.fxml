@@ -9,8 +9,8 @@
 <?import javafx.scene.text.Text?>
 
 <AnchorPane prefHeight="750.0" prefWidth="850.0" styleClass="accounts_view_container" stylesheets="@../../Styles/Accounts.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.bankify.Controllers.Client.AccountsController">
-    <Text layoutX="14.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checking Account" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="14.0" />
-   <VBox layoutX="12.0" layoutY="46.0" prefHeight="300.0" prefWidth="450.0" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="40.0">
+    <Text layoutX="37.0" layoutY="33.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Checking Account" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="20.40000057220459" />
+   <VBox layoutX="37.0" layoutY="46.0" prefHeight="300.0" prefWidth="450.0" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="46.0">
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Account Number:" />
       <Label fx:id="ch_acc_num" text="3452 4950" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Transaction Limit:" />
@@ -20,8 +20,8 @@
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" />
       <Label fx:id="ch_acc_bal" text="৳30000" />
    </VBox>
-    <Text layoutX="14.0" layoutY="398.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Savings Account" AnchorPane.leftAnchor="14.0" AnchorPane.topAnchor="364.0" />
-   <VBox layoutX="14.0" layoutY="406.0" prefHeight="300.0" prefWidth="450.0" AnchorPane.bottomAnchor="44.0" AnchorPane.leftAnchor="14.0">
+    <Text layoutX="37.0" layoutY="383.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Savings Account" AnchorPane.leftAnchor="37.0" AnchorPane.topAnchor="370.4000005722046" />
+   <VBox layoutX="37.0" layoutY="412.0" prefHeight="300.0" prefWidth="450.0" AnchorPane.bottomAnchor="38.0" AnchorPane.leftAnchor="37.0">
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Account Number:" />
       <Label fx:id="sv_acc_num" text="3452 4950" />
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Withdrawal Limit:" />
@@ -31,14 +31,14 @@
       <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Balance:" />
       <Label fx:id="sv_acc_balance" text="৳120000" />
    </VBox>
-    <Text layoutX="466.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Move Funds To Saving Account:" AnchorPane.rightAnchor="174.1640625" />
-    <Button layoutX="456.0" layoutY="128.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="230.0" text="Transfer">
+    <Text layoutX="449.0" layoutY="55.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Move Funds To Saving Account:" AnchorPane.rightAnchor="186.7507781982422" />
+    <Button fx:id="trans_to_sv_btn" layoutX="456.0" layoutY="128.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="230.0" text="Transfer">
        <graphic>
-          <FontAwesomeIconView fx:id="trans_to_sv_btn" fill="WHITE" glyphName="ARROW_DOWN" size="20" />
+          <FontAwesomeIconView fill="WHITE" glyphName="ARROW_DOWN" size="20" />
        </graphic>
     </Button>
     <TextField fx:id="amount_to_sv" layoutX="465.0" layoutY="74.0" prefHeight="22.0" prefWidth="199.0" AnchorPane.rightAnchor="164.0" AnchorPane.topAnchor="72.0" />
-    <Text layoutX="466.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Move Funds To Saving Account:" AnchorPane.rightAnchor="174.1640625" AnchorPane.topAnchor="366.0" />
+    <Text layoutX="452.0" layoutY="381.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Move Funds To Checkings Account:" AnchorPane.rightAnchor="159.58436584472656" AnchorPane.topAnchor="366.0" />
     <Button fx:id="trans_to_cv_btn" layoutX="456.0" layoutY="462.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="230.0" text="Transfer">
        <graphic>
           <FontAwesomeIconView fill="WHITE" glyphName="ARROW_UP" size="20" />

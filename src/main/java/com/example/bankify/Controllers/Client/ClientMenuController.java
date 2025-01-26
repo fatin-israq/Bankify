@@ -54,61 +54,63 @@ public class ClientMenuController implements Initializable {
     }
 
     public void showReportPopup() {
-        // Create a new Stage (popup window)
-        Stage popupStage = new Stage();
-        popupStage.initModality(Modality.APPLICATION_MODAL); // Block interaction with other windows
-        popupStage.setTitle("Report an Issue");
+    // Create a new Stage (popup window)
+    Stage popupStage = new Stage();
+    popupStage.initModality(Modality.APPLICATION_MODAL); // Block interaction with other windows
+    popupStage.setTitle("Report an Issue");
 
-        // Create UI elements for the popup
-        Label label = new Label("Describe the issue:");
-        label.setStyle("-fx-font-size: 14px; -fx-text-fill: #050000;");
+    // Create UI elements for the popup
+    Label label = new Label("Describe the issue:");
+    label.setStyle("-fx-font-size: 14px; -fx-text-fill: #050000; -fx-font-family: 'Arial';");
 
-        TextArea textArea = new TextArea();
-        textArea.setPromptText("Enter your issue here...");
-        textArea.setStyle(
-                "-fx-background-color: #ffffff; " +  // White background
-                        "-fx-text-fill: #000201; " +        // Dark text
-                        "-fx-font-size: 13px; " +
-                        "-fx-border-color: #216647; " +     // Green border
-                        "-fx-border-radius: 8px; " +
-                        "-fx-background-radius: 8px;"      // Rounded corners
-        );
+    TextArea textArea = new TextArea();
+    textArea.setPromptText("Enter your issue here...");
+    textArea.setStyle(
+            "-fx-background-color: #ffffff; " +  // White background
+                    "-fx-text-fill: #000201; " +        // Dark text
+                    "-fx-font-size: 13px; " +
+                    "-fx-border-color: #216647; " +     // Green border
+                    "-fx-background-radius: 8px;" +     // Rounded corners
+                    "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" // Shadow effect
+    );
 
-        Button reportButton = new Button("Submit Report");
-        reportButton.setStyle(
-                "-fx-background-color: #253f25; " + // Green background
-                        "-fx-text-fill: white; " +          // White text
-                        "-fx-font-size: 14px; " +
-                        "-fx-padding: 8px 16px; " +         // Padding inside button
-                        "-fx-background-radius: 8px;"      // Rounded corners
-        );
-        reportButton.setOnMouseEntered(e -> reportButton.setStyle("-fx-background-color: #216647; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 8px;")); // Darker green on hover
-        reportButton.setOnMouseExited(e -> reportButton.setStyle("-fx-background-color: #253f25; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 8px;"));
+    Button reportButton = new Button("Submit Report");
+    reportButton.setStyle(
+            "-fx-background-color: #253f25; " + // Green background
+                    "-fx-text-fill: white; " +          // White text
+                    "-fx-font-size: 14px; " +
+                    "-fx-padding: 8px 16px; " +         // Padding inside button
+                    "-fx-background-radius: 8px;" +    // Rounded corners
+                    "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" // Shadow effect
+    );
+    reportButton.setOnMouseEntered(e -> reportButton.setStyle("-fx-background-color: #216647; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0); -fx-cursor: hand;")); // Darker green on hover
+    reportButton.setOnMouseExited(e -> reportButton.setStyle("-fx-background-color: #253f25; -fx-text-fill: white; -fx-font-size: 14px; -fx-background-radius: 8px; -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);"));
 
-        // Close the popup when the Report button is clicked
-        reportButton.setOnAction(e -> {
-            String reportText = textArea.getText(); // Get the text entered
-            System.out.println("Report submitted: " + reportText); // Handle the report (e.g., save to a file or send to a server)
-            popupStage.close(); // Close the popup
-        });
+    // Close the popup when the Report button is clicked
+    reportButton.setOnAction(e -> {
+        String reportText = textArea.getText(); // Get the text entered
+        System.out.println("Report submitted: " + reportText); // Handle the report (e.g., save to a file or send to a server)
+        popupStage.close(); // Close the popup
+    });
 
-        // Layout for the popup
-        VBox layout = new VBox(15); // Spacing between elements
-        layout.getChildren().addAll(label, textArea, reportButton);
-        layout.setStyle(
-                "-fx-background-color: #f2fff8; " + // Light green background
-                        "-fx-padding: 20px; " +
-                        "-fx-border-radius: 0px; " +       // Rounded border corners
-                        "-fx-background-radius: 10px;"     // Rounded background corners
-        );
+    // Layout for the popup
+    VBox layout = new VBox(15); // Spacing between elements
+    layout.getChildren().addAll(label, textArea, reportButton);
+    layout.setStyle(
+            "-fx-background-color: #f2fff8; " + // Light green background
+                    "-fx-padding: 20px; " +
+                    "-fx-border-radius: 0px; " +       // Rounded border corners
+                    "-fx-background-radius: 10px;" +  // Rounded background corners
+                    "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" // Shadow effect
+    );
 
-        layout.setAlignment(Pos.CENTER);
+    layout.setAlignment(Pos.CENTER);
 
-        // Set the Scene and show the popup
-        Scene scene = new Scene(layout, 350, 250); // Adjust size as needed
-        popupStage.setScene(scene);
-        popupStage.showAndWait(); // Wait for the popup to close before returning
-    }
+    // Set the Scene and show the popup
+    Scene scene = new Scene(layout, 350, 250); // Adjust size as needed
+    popupStage.setScene(scene);
+    popupStage.showAndWait(); // Wait for the popup to close before returning
+}
 
     private void onLogout() {
         //Set Stage
