@@ -34,7 +34,7 @@
          <!-- Search Result -->
          <VBox spacing="10" styleClass="details-container">
             <Label styleClass="section-title" text="Search Result:" />
-            <Label fx:id="search_result" styleClass="detail-label2" text="asdfasdf" textFill="#10bf2d">
+            <Label fx:id="search_result" styleClass="detail-label2" textFill="#10bf2d">
                <font>
                   <Font size="16.0" />
                </font></Label>
