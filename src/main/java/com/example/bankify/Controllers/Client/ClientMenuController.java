@@ -3,8 +3,6 @@ package com.example.bankify.Controllers.Client;
 import com.example.bankify.Models.Model;
 import com.example.bankify.Views.ClientMenuOptions;
 import javafx.fxml.Initializable;
-import javafx.geometry.Pos;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -114,9 +112,9 @@ public class ClientMenuController implements Initializable {
 
     private void onLogout() {
         //Set Stage
-        Stage stage = (Stage) dashboard_btn.getScene().getWindow();
-        //Close the client window
-        Model.getInstance().getViewFactory().closeStage(stage);
+       Stage satge = (Stage) dashboard_btn.getScene().getWindow();
+       //Close the client window
+        Model.getInstance().getViewFactory().closeStage(satge);
         //Show Login Window
         Model.getInstance().getViewFactory().showLoginWindow();
         //Set Client Login Success Flag
