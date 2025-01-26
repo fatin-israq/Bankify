@@ -3,6 +3,8 @@ package com.example.bankify.Controllers.Client;
 import com.example.bankify.Models.Model;
 import com.example.bankify.Views.ClientMenuOptions;
 import javafx.fxml.Initializable;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
@@ -95,10 +97,8 @@ public class ClientMenuController implements Initializable {
         layout.getChildren().addAll(label, textArea, reportButton);
         layout.setStyle(
                 "-fx-background-color: #f2fff8; " + // Light green background
-                        "-fx-padding: 20px; " +             // Padding inside the layout
-                        "-fx-border-color: #253f25; " +     // Green border
-                        "-fx-border-width: 2px; " +
-                        "-fx-border-radius: 10px; " +       // Rounded border corners
+                        "-fx-padding: 20px; " +
+                        "-fx-border-radius: 0px; " +       // Rounded border corners
                         "-fx-background-radius: 10px;"     // Rounded background corners
         );
 
