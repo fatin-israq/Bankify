@@ -1,0 +1,77 @@
+.main-container {
+    -fx-background-color: #EEEEEE;
+    -fx-padding: 20;
+    -fx-spacing: 20;
+}
+
+/* Left Section Styles */
+.profile-left {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 20;
+    -fx-spacing: 20;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #AAAAAA, 10, 0, 0, 10);
+}
+
+.profile-image {
+    -fx-border-color: #AAAAAA;
+    -fx-border-radius: 100;
+    -fx-effect: dropshadow(three-pass-box, #AAAAAA, 5, 0, 0, 5);
+}
+
+.profile-name {
+    -fx-font-size: 2.2em;
+    -fx-font-family: "Calibri Light";
+    -fx-font-weight: bolder;
+    -fx-text-fill: black;
+}
+
+.profile-username {
+    -fx-font-size: 1.2em;
+    -fx-text-fill: #666666;
+    -fx-font-family: "Calibri Light";
+}
+
+.details-container .detail-label {
+    -fx-font-size: 1.1em;
+    -fx-text-fill: #444444;
+    -fx-font-family: "Calibri Light";
+    -fx-font-weight: bolder;
+}
+
+/* Right Section Styles */
+.profile-right {
+    -fx-background-color: #FFFFFF;
+    -fx-padding: 20;
+    -fx-spacing: 20;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, #AAAAAA, 10, 0, 0, 10);
+}
+
+.section-title {
+    -fx-font-size: 1.5em;
+    -fx-font-family: "Calibri Light";
+    -fx-text-fill: #333333;
+}
+
+.text-field {
+    -fx-pref-height: 40;
+    -fx-background-color: #FFFFFF;
+    -fx-effect: dropshadow(three-pass-box, #AAAAAA, 3, 0, 0, 3);
+    -fx-padding: 5;
+}
+
+.button-label {
+    -fx-background-color: linear-gradient(to right, #132A13, #253F25);
+    -fx-text-fill: #FFFFFF;
+    -fx-padding: 10 20;
+    -fx-border-radius: 5;
+    -fx-effect: dropshadow(three-pass-box, #AAAAAA, 3, 0, 0, 3);
+    -fx-cursor: hand;
+    -fx-font-family: "Calibri Light";
+    -fx-background-radius: 9px;
+}
+
+.button-label:hover {
+    -fx-background-color: #285D28;
+}
