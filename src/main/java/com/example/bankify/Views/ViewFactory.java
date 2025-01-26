@@ -23,6 +23,7 @@ public class ViewFactory {
     private AnchorPane dashboardView;
     private AnchorPane transactionsView;
     private AnchorPane accountsView;
+    private AnchorPane profileView;
 
     // Admin Views
     private final ObjectProperty<AdminMenuOptions> adminSelectedMenuItem;
@@ -82,6 +83,17 @@ public class ViewFactory {
             }
         }
         return accountsView;
+    }
+
+    public AnchorPane getProfileView() {
+        if((profileView == null)){
+            try {
+                profileView = new FXMLLoader(getClass().getResource("/Fxml/Client/Profile.fxml")).load();
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return profileView;
     }
 
     public void showClientWindow() {
