@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
@@ -29,6 +31,11 @@
             <Label fx:id="nid_number" styleClass="detail-label" text="NID Number: 56745523457" />
             <Label fx:id="address" styleClass="detail-label" text="Address: Bangla Street, London, England" />
          </VBox>
+         <!-- Search Result -->
+         <VBox spacing="10" styleClass="details-container">
+            <Label styleClass="section-title" text="Search Result:" />
+            <Label fx:id="search_result" styleClass="detail-label" text="No result found" />
+         </VBox>
       </VBox>
 
       <!-- Right Section -->
@@ -37,12 +44,16 @@
          <Label styleClass="section-title" text="Chat with:" />
          <HBox spacing="10">
             <TextField fx:id="search_user" promptText="Enter username..." styleClass="text-field" />
-            <Label styleClass="button-label" text="Search" />
+            <Button fx:id="search_button" text="Search" />
          </HBox>
          <VBox spacing="10">
             <TextField fx:id="chat_message" promptText="Enter message..." styleClass="text-field" />
-            <Label styleClass="button-label" text="Send" />
+            <Button fx:id="send_button" text="Send" />
+            <Label fx:id="send_status" styleClass="send-status" text="" />
          </VBox>
+         <!-- Inbox Section -->
+         <Label styleClass="section-title" text="Inbox:" />
+         <ListView fx:id="inbox_list" styleClass="inbox-list" />
       </VBox>
    </HBox>
 </AnchorPane>

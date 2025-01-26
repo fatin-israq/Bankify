@@ -1,6 +1,7 @@
 package com.example.bankify.Controllers.Admin;
 
 import com.example.bankify.Models.Client;
+import com.example.bankify.Models.Model;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -28,5 +29,12 @@ public class ClientCellController implements Initializable {
         ch_acc_lbl.textProperty().bind(client.checkingAccountProperty().asString());
         sv_acc_lbl.textProperty().bind(client.savingsAccountProperty().asString());
         date_lbl.textProperty().bind(client.dateProperty().asString());
+
+        delete_btn.setOnAction(event -> deleteClient());
+    }
+
+    private void deleteClient() {
+        Model.getInstance().getDatabaseDriver().deleteClient(client.pAddressProperty().get());
+        Model.getInstance().getClients().remove(client);
     }
 }

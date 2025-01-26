@@ -72,9 +72,9 @@ public class Model {
         SavingsAccount savingsAccount;
         ResultSet resultSet = databaseDriver.getClientData(pAddress, password);
         try {
-            if (resultSet.isBeforeFirst()) {
+            if (resultSet != null && resultSet.isBeforeFirst()) {
                 this.client.firstNameProperty().set(resultSet.getString("FirstName"));
-                this .client.lastNameProperty().set(resultSet.getString("LastName"));
+                this.client.lastNameProperty().set(resultSet.getString("LastName"));
                 this.client.pAddressProperty().set(resultSet.getString("PayeeAddress"));
                 String[] dateParts = resultSet.getString("Date").split("-");
                 LocalDate date = LocalDate.of(Integer.parseInt(dateParts[0]), Integer.parseInt(dateParts[1]), Integer.parseInt(dateParts[2]));

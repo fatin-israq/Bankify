@@ -54,24 +54,24 @@ public class ClientMenuController implements Initializable {
     }
 
     public void showReportPopup() {
-    // Create a new Stage (popup window)
-    Stage popupStage = new Stage();
-    popupStage.initModality(Modality.APPLICATION_MODAL); // Block interaction with other windows
-    popupStage.setTitle("Report an Issue");
+        // Create a new Stage (popup window)
+        Stage popupStage = new Stage();
+        popupStage.initModality(Modality.APPLICATION_MODAL); // Block interaction with other windows
+        popupStage.setTitle("Report an Issue");
 
-    // Create UI elements for the popup
-    Label label = new Label("Describe the issue:");
-    label.setStyle("-fx-font-size: 14px; -fx-text-fill: #050000; -fx-font-family: 'Arial';");
+        // Create UI elements for the popup
+        Label label = new Label("Describe the issue:");
+        label.setStyle("-fx-font-size: 14px; -fx-text-fill: #050000; -fx-font-family: 'Arial';");
 
-    TextArea textArea = new TextArea();
-    textArea.setPromptText("Enter your issue here...");
-    textArea.setStyle(
-            "-fx-background-color: #ffffff; " +  // White background
-                    "-fx-text-fill: #000201; " +        // Dark text
-                    "-fx-font-size: 13px; " +
-                    "-fx-border-color: #216647; " +     // Green border
-                    "-fx-background-radius: 8px;" +     // Rounded corners
-                    "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" // Shadow effect
+        TextArea textArea = new TextArea();
+        textArea.setPromptText("Enter your issue here...");
+        textArea.setStyle(
+                "-fx-background-color: #ffffff; " +  // White background
+                        "-fx-text-fill: #000201; " +        // Dark text
+                        "-fx-font-size: 13px; " +
+                        "-fx-border-color: #216647; " +     // Green border
+                        "-fx-background-radius: 8px;" +     // Rounded corners
+                        "-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.1), 10, 0, 0, 0);" // Shadow effect
     );
 
     Button reportButton = new Button("Submit Report");
@@ -114,9 +114,9 @@ public class ClientMenuController implements Initializable {
 
     private void onLogout() {
         //Set Stage
-       Stage satge = (Stage) dashboard_btn.getScene().getWindow();
+       Stage stage = (Stage) dashboard_btn.getScene().getWindow();
        //Close the client window
-        Model.getInstance().getViewFactory().closeStage(satge);
+        Model.getInstance().getViewFactory().closeStage(stage);
         //Show Login Window
         Model.getInstance().getViewFactory().showLoginWindow();
         //Set Client Login Success Flag

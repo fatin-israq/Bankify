@@ -7,6 +7,8 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 public class ProfileController implements Initializable {
@@ -21,9 +23,12 @@ public class ProfileController implements Initializable {
     public Label nid_number;
     public Label address;
 
+    private Client searchedClient;
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         loadClientData();
+        addListeners();
     }
 
     private void loadClientData() {
@@ -38,5 +43,45 @@ public class ProfileController implements Initializable {
         phone.setText("Phone: +123456789"); // Placeholder, replace with actual phone number if available
         nid_number.setText("NID Number: 56745523457"); // Placeholder, replace with actual NID number if available
         address.setText("Address: Bangla Street, London, England"); // Placeholder, replace with actual address if available
+    }
+
+    private void addListeners() {
+        search_user.setOnAction(event -> searchUser());
+        chat_message.setOnAction(event -> sendMessage());
+    }
+
+    private void searchUser() {
+        String username = search_user.getText();
+        ResultSet resultSet = Model.getInstance().getDatabaseDriver().searchClient(username);
+        try {
+            if (resultSet.next()) {
+                String fName = resultSet.getString("FirstName");
+                String lName = resultSet.getString("LastName");
+                String pAddress = resultSet.getString("PayeeAddress");
+                searchedClient = new Client(fName, lName, pAddress, null, null, null);
+                // Update UI with searched client details
+                first_name.setText("First Name: " + fName);
+                last_name.setText("Last Name: " + lName);
+                email.setText("Email: " + pAddress + "@gmail.com");
+                // Update other fields as necessary
+            } else {
+                System.out.println("User not found");
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void sendMessage() {
+        if (searchedClient != null) {
+            String message = chat_message.getText();
+            String sender = Model.getInstance().getClient().pAddressProperty().get();
+            String receiver = searchedClient.pAddressProperty().get();
+            Model.getInstance().getDatabaseDriver().insertMessage(sender, receiver, message);
+            chat_message.setText("");
+            System.out.println("Message sent to " + receiver);
+        } else {
+            System.out.println("No user selected to send message");
+        }
     }
 }

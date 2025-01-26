@@ -11,12 +11,39 @@ import java.util.logging.Logger;
 public class DatabaseDriver {
     private static final Logger LOGGER = Logger.getLogger(DatabaseDriver.class.getName());
     private Connection conn;
+    private static final String DB_URL = "jdbc:sqlite:bankify.db";
 
     public DatabaseDriver() {
         try {
-            this.conn = DriverManager.getConnection("jdbc:sqlite:bankify.db");
+            this.conn = DriverManager.getConnection(DB_URL);
+            conn.createStatement().execute("PRAGMA busy_timeout = 5000");
+            createMessagesTable();
         } catch (SQLException e) {
             LOGGER.log(Level.SEVERE, "Error connecting to SQLite database!", e);
+        }
+    }
+
+    public void createMessagesTable() {
+        String sql = "CREATE TABLE IF NOT EXISTS Messages (" +
+                     "id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                     "sender TEXT NOT NULL, " +
+                     "receiver TEXT NOT NULL, " +
+                     "message TEXT NOT NULL, " +
+                     "date TEXT NOT NULL)";
+        try (Statement statement = this.conn.createStatement()) {
+            statement.execute(sql);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void closeConnection() {
+        try {
+            if (conn != null && !conn.isClosed()) {
+                conn.close();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
         }
     }
 
@@ -94,9 +121,7 @@ public class DatabaseDriver {
         try{
             statement = this.conn.createStatement();
             LocalDate date = LocalDate.now();
-            statement.executeUpdate("INSERT INTO" +
-                    "Transactions(Sender, Receiver, Amount, Date, Message) )" +
-                    "VALUES ('"+sender+"', '"+receiver+"', "+amount+", '"+date+"', '"+message+"');");
+            statement.executeUpdate("INSERT INTO Transactions(Sender, Receiver, Amount, Date, Message) VALUES ('"+sender+"', '"+receiver+"', "+amount+", '"+date+"', '"+message+"');");
         }catch(SQLException e){
             e.printStackTrace();
         }
@@ -232,4 +257,44 @@ public class DatabaseDriver {
         return resultSet;
     }
 
+    // Chat section
+
+    public void insertMessage(String sender, String receiver, String message) {
+        synchronized (conn) {
+            String sql = "INSERT INTO Messages (sender, receiver, message, date) VALUES (?, ?, ?, ?)";
+            try (PreparedStatement pstmt = conn.prepareStatement(sql)) {
+                pstmt.setString(1, sender);
+                pstmt.setString(2, receiver);
+                pstmt.setString(3, message);
+                pstmt.setString(4, LocalDate.now().toString());
+                pstmt.executeUpdate();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public ResultSet getMessages(String sender, String receiver) {
+        ResultSet resultSet = null;
+        synchronized (conn) {
+            try (Statement statement = conn.createStatement()) {
+                String sql = "SELECT * FROM Messages WHERE (sender = '" + sender + "' AND receiver = '" + receiver + "') OR (sender = '" + receiver + "' AND receiver = '" + sender + "') ORDER BY date";
+                resultSet = statement.executeQuery(sql);
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
+        }
+        return resultSet;
+    }
+
+
+    public void deleteClient(String pAddress) {
+        try (Statement statement = this.conn.createStatement()) {
+            statement.executeUpdate("DELETE FROM Clients WHERE PayeeAddress = '" + pAddress + "';");
+            statement.executeUpdate("DELETE FROM CheckingAccounts WHERE Owner = '" + pAddress + "';");
+            statement.executeUpdate("DELETE FROM SavingsAccounts WHERE Owner = '" + pAddress + "';");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
 }
