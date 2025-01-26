@@ -34,7 +34,10 @@
          <!-- Search Result -->
          <VBox spacing="10" styleClass="details-container">
             <Label styleClass="section-title" text="Search Result:" />
-            <Label fx:id="search_result" styleClass="detail-label" text="No result found" />
+            <Label fx:id="search_result" styleClass="detail-label2" text="asdfasdf" textFill="#10bf2d">
+               <font>
+                  <Font size="16.0" />
+               </font></Label>
          </VBox>
       </VBox>
 
@@ -44,11 +47,11 @@
          <Label styleClass="section-title" text="Chat with:" />
          <HBox spacing="10">
             <TextField fx:id="search_user" promptText="Enter username..." styleClass="text-field" />
-            <Button fx:id="search_button" text="Search" />
+            <Button fx:id="search_button" styleClass="button-label" text="Search" />
          </HBox>
-         <VBox spacing="10">
-            <TextField fx:id="chat_message" promptText="Enter message..." styleClass="text-field" />
-            <Button fx:id="send_button" text="Send" />
+         <VBox prefHeight="118.0" prefWidth="335.0" spacing="10">
+            <TextField fx:id="chat_message" prefHeight="33.0" prefWidth="335.0" promptText="Enter message..." />
+            <Button fx:id="send_button" styleClass="button-label" text="Send" />
             <Label fx:id="send_status" styleClass="send-status" text="" />
          </VBox>
          <!-- Inbox Section -->

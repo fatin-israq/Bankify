@@ -3,7 +3,9 @@ package com.example.bankify.Controllers.Client;
 import com.example.bankify.Models.Client;
 import com.example.bankify.Models.Model;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
 import java.net.URL;
@@ -22,6 +24,10 @@ public class ProfileController implements Initializable {
     public Label phone;
     public Label nid_number;
     public Label address;
+    public Button search_button;
+    public Button send_button;
+    public ListView<String> inbox_list;
+    public Label search_result;
 
     private Client searchedClient;
 
@@ -46,8 +52,8 @@ public class ProfileController implements Initializable {
     }
 
     private void addListeners() {
-        search_user.setOnAction(event -> searchUser());
-        chat_message.setOnAction(event -> sendMessage());
+        search_button.setOnAction(event -> searchUser());
+        send_button.setOnAction(event -> sendMessage());
     }
 
     private void searchUser() {
@@ -59,11 +65,7 @@ public class ProfileController implements Initializable {
                 String lName = resultSet.getString("LastName");
                 String pAddress = resultSet.getString("PayeeAddress");
                 searchedClient = new Client(fName, lName, pAddress, null, null, null);
-                // Update UI with searched client details
-                first_name.setText("First Name: " + fName);
-                last_name.setText("Last Name: " + lName);
-                email.setText("Email: " + pAddress + "@gmail.com");
-                // Update other fields as necessary
+                search_result.setText("Found: " + fName + " " + lName + " (" + pAddress + ")");
             } else {
                 System.out.println("User not found");
             }
@@ -80,6 +82,8 @@ public class ProfileController implements Initializable {
             Model.getInstance().getDatabaseDriver().insertMessage(sender, receiver, message);
             chat_message.setText("");
             System.out.println("Message sent to " + receiver);
+            // Optionally, update the inbox list with the new message
+            inbox_list.getItems().add("To " + receiver + ": " + message);
         } else {
             System.out.println("No user selected to send message");
         }
